@@ -1,0 +1,298 @@
+openapi: 3.0.0
+paths:
+    /api/v1/health:
+        get:
+            operationId: HealthController_check
+            parameters: []
+            responses:
+                '200':
+                    description: 'The Health Check is successful'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    status: {type: string, example: ok}
+                                    info: {type: object, example: {database: {status: up}}, additionalProperties: {type: object, required: [status], properties: {status: {type: string}}, additionalProperties: true}, nullable: true}
+                                    error: {type: object, example: {}, additionalProperties: {type: object, required: [status], properties: {status: {type: string}}, additionalProperties: true}, nullable: true}
+                                    details: {type: object, example: {database: {status: up}}, additionalProperties: {type: object, required: [status], properties: {status: {type: string}}, additionalProperties: true}}
+                '503':
+                    description: 'The Health Check is not successful'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    status: {type: string, example: error}
+                                    info: {type: object, example: {database: {status: up}}, additionalProperties: {type: object, required: [status], properties: {status: {type: string}}, additionalProperties: true}, nullable: true}
+                                    error: {type: object, example: {redis: {status: down, message: 'Could not connect'}}, additionalProperties: {type: object, required: [status], properties: {status: {type: string}}, additionalProperties: true}, nullable: true}
+                                    details: {type: object, example: {database: {status: up}, redis: {status: down, message: 'Could not connect'}}, additionalProperties: {type: object, required: [status], properties: {status: {type: string}}, additionalProperties: true}}
+    /api/v1/eth/validators:
+        get:
+            operationId: EthController_getValidators
+            parameters:
+                -
+                    name: withdrawalCredentials
+                    required: true
+                    in: query
+                    schema:
+                        type: string
+                -
+                    name: x-network
+                    in: header
+                    description: 'Ethereum network (mainnet, hoodi)'
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: 'Get validators by withdrawal credentials'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/ValidatorDto'
+            tags:
+                - eth
+    /api/v1/eth/consolidate:
+        post:
+            operationId: EthController_consolidate
+            parameters:
+                -
+                    name: x-network
+                    in: header
+                    description: 'Ethereum network (mainnet, hoodi)'
+                    required: true
+                    schema:
+                        type: string
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/ConsolidateRequestDto'
+            responses:
+                '200':
+                    description: 'Craft N consolidation transactions'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ConsolidationResponseDto'
+            tags:
+                - eth
+info:
+    title: API
+    description: 'API docs'
+    version: '1.0'
+    contact: {}
+tags: []
+servers:
+    -
+        url: 'https://dev-api.consolideth.app/'
+        description: 'Development server'
+        variables: null
+    -
+        url: 'https://api.consolideth.app/'
+        description: 'Production server'
+        variables: null
+    -
+        url: 'http://localhost:3000'
+        description: 'localhost server'
+        variables: null
+components:
+    securitySchemes:
+        bearer:
+            scheme: bearer
+            bearerFormat: JWT
+            type: http
+    schemas:
+        ValidatorDto:
+            type: object
+            properties:
+                index:
+                    type: number
+                    description: 'Validator index'
+                    example: 123456
+                pubkey:
+                    type: string
+                    description: 'Validator public key (48 bytes in hex format)'
+                    example: '0x8a9c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353c'
+                balance:
+                    type: number
+                    description: 'Validator balance in Gwei'
+                    example: 32000000000
+                credtype:
+                    type: string
+                    description: 'Validator credential type (01 = BLS, 02 = execution layer)'
+                    example: '01'
+                status:
+                    type: string
+                    description: 'Validator status (active, pending, exited, etc.)'
+                    example: active
+                isconsolidable:
+                    type: boolean
+                    description: 'Whether the validator is eligible for consolidation'
+                    example: true
+            required:
+                - index
+                - pubkey
+                - balance
+                - credtype
+                - status
+                - isconsolidable
+        ConsolidateRequestDto:
+            type: object
+            properties:
+                targetPubkey:
+                    type: string
+                    description: 'Target validator public key (48 bytes in hex format)'
+                    example: '0x8a9c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353c'
+                sourcePubkeys:
+                    description: 'Array of source validator public keys to consolidate from'
+                    example:
+                        - '0xa89c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353d'
+                        - '0xb89c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353e'
+                    type: array
+                    items:
+                        type: string
+                sender:
+                    type: string
+                    description: 'Ethereum address of the transaction sender'
+                    example: '0x5fDCb78cA9A1164c13428E5fC9582c8c48Dab69f'
+            required:
+                - targetPubkey
+                - sourcePubkeys
+                - sender
+        TransactionPayloadDto:
+            type: object
+            properties:
+                payload:
+                    type: object
+                    description: 'Transaction payload data for signing'
+                    example:
+                        sender: '0x5fDCb78cA9A1164c13428E5fC9582c8c48Dab69f'
+                        from: '0x5fDCb78cA9A1164c13428E5fC9582c8c48Dab69f'
+                        to: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+                        value: '0xde0b6b3a7640000'
+                        gas: '0x16356'
+                        gasPrice: '0x1bf08eb000'
+                        data: '0x6080604052600080fd00'
+                        chainId: '0x1'
+                isConversionTx:
+                    type: boolean
+                    description: 'Whether this is a conversion transaction to change credential type'
+                    example: false
+                description:
+                    type: string
+                    description: 'Human readable description of the transaction purpose'
+                    example: 'Consolidation transaction for single validator'
+                sourcePubkey:
+                    type: string
+                    description: 'Source validator public key'
+                    example: '0xa89c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353d'
+                targetPubkey:
+                    type: string
+                    description: 'Target validator public key'
+                    example: '0x8a9c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353c'
+            required:
+                - payload
+                - isConversionTx
+                - description
+        ValidationErrorDetailDto:
+            type: object
+            properties:
+                pubkey:
+                    type: string
+                    description: 'Public key of the validator that failed validation'
+                    example: '0x8a9c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353c'
+                reason:
+                    type: string
+                    description: 'Reason for validation failure'
+                    example: 'Withdrawal address does not match sender address'
+                details:
+                    type: object
+                    description: 'Additional details about the validation failure'
+                    example:
+                        withdrawalAddress: '0x1234567890abcdef1234567890abcdef12345678'
+                        senderAddress: '0x5fDCb78cA9A1164c13428E5fC9582c8c48Dab69f'
+            required:
+                - pubkey
+                - reason
+        ConsolidationResponseDto:
+            type: object
+            properties:
+                success:
+                    type: boolean
+                    description: 'Whether the consolidation request was successful'
+                    example: true
+                targetPubkey:
+                    type: string
+                    description: 'Target validator public key'
+                    example: '0x8a9c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353c'
+                sourcePubkeysCount:
+                    type: number
+                    description: 'Number of source validators being consolidated'
+                    example: 3
+                sender:
+                    type: string
+                    description: 'Ethereum address of the transaction sender'
+                    example: '0x5fDCb78cA9A1164c13428E5fC9582c8c48Dab69f'
+                payloads:
+                    description: 'Array of transaction payloads to be signed and submitted'
+                    example:
+                        -
+                            payload:
+                                sender: '0x5fDCb78cA9A1164c13428E5fC9582c8c48Dab69f'
+                                from: '0x5fDCb78cA9A1164c13428E5fC9582c8c48Dab69f'
+                                to: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+                                value: '0xde0b6b3a7640000'
+                                gas: '0x16356'
+                                gasPrice: '0x1bf08eb000'
+                                data: '0x6080604052600080fd00'
+                                chainId: '0x1'
+                            isConversionTx: true
+                            description: 'Conversion transaction to change target validator credential type to 02'
+                            sourcePubkey: '0x8a9c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353c'
+                            targetPubkey: '0x8a9c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353c'
+                        -
+                            payload:
+                                sender: '0x5fDCb78cA9A1164c13428E5fC9582c8c48Dab69f'
+                                from: '0x5fDCb78cA9A1164c13428E5fC9582c8c48Dab69f'
+                                to: '0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD'
+                                value: '0xde0b6b3a7640000'
+                                gas: '0x2c47c'
+                                gasPrice: '0x1bf08eb000'
+                                data: '0x095ea7b30000000000000000000000003fc91a3afd70395cd496c647d5a6cc9d4b2b7fad0000000000000000000000000000000000000000000000008ac7230489e80000'
+                                chainId: '0x1'
+                            isConversionTx: false
+                            description: 'Consolidation transaction for multiple validators'
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/TransactionPayloadDto'
+                error:
+                    type: string
+                    description: 'Error message if validation failed'
+                    example: 'Some validators failed validation'
+                details:
+                    description: 'Details of validation errors for specific validators'
+                    example:
+                        -
+                            pubkey: '0xa89c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353d'
+                            reason: 'Withdrawal address does not match sender address'
+                            details:
+                                withdrawalAddress: '0x1234567890abcdef1234567890abcdef12345678'
+                                senderAddress: '0x5fDCb78cA9A1164c13428E5fC9582c8c48Dab69f'
+                        -
+                            pubkey: '0xb89c4d949077fd89190a508a4506f6bc916c6a255abe8eb302e8effc4b72f22a3b34672681f5cba15d4bc3e2b611353e'
+                            reason: 'Validator is not consolidable'
+                            details:
+                                credtype: '01'
+                                activationEpoch: 12345
+                                currentEpoch: 12500
+                                shardCommitteePeriod: 256
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ValidationErrorDetailDto'
+            required:
+                - success

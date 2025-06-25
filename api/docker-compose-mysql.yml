@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: stakely  # Replace with your secure password
+      MYSQL_DATABASE: stakely-consolideth-api    # Optional: Creates a database on container startup
+      MYSQL_USER: stakely                   # Optional: Creates a user and grants all privileges on MYSQL_DATABASE
+      MYSQL_PASSWORD: stakely      # Required if MYSQL_USER is set
+    ports:
+      - "3306:3306"  # Maps port 3306 of the container to port 3306 on the host
+    volumes:
+      - stakely-consolideth-api_db_data:/var/lib/mysql  # Persists database data between container restarts
+    restart: always  # Ensures the container restarts automatically if it stops or the Docker daemon is restarted
+
+volumes:
+  stakely-consolideth-api_db_data:  # Defines a volume for storing database data
