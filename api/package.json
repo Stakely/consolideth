@@ -19,7 +19,7 @@
     "seed:run:relational": "ts-node -r tsconfig-paths/register ./src/database/seeds/relational/run-seed.ts",
     "seed:run:document": "ts-node -r tsconfig-paths/register ./src/database/seeds/document/run-seed.ts",
     "prebuild": "rimraf dist",
-    "build": "nest build && npm run sentry:sourcemaps",
+    "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -36,7 +36,7 @@
     "prepare": "husky",
     "release": "release-it",
     "commitlint": "commitlint --edit",
-    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org stakely --project consolideth-api ./dist && sentry-cli sourcemaps upload --org stakely --project consolideth-api ./dist"
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org stakely --project consolideth-api ./dist"
   },
   "dependencies": {
     "@mysten/sui": "^1.28.0",
