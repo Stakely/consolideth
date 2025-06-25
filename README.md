@@ -38,7 +38,18 @@ This is a monorepo containing:
    ```
 
 3. **Configure environment variables**
-   Edit the `.env` files with your specific configuration:
+   ```bash
+   # Create root environment file
+   cp .env.example .env
+   
+   # Create API environment file
+   cp api/env-example-relational api/.env
+   
+   # Create frontend environment file
+   cp frontend/env-example frontend/.env
+   ```
+   
+   Then edit the `.env` files with your specific configuration:
    - Set your Ethereum RPC URLs
    - Configure contract addresses
    - Add your BeaconChain API key

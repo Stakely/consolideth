@@ -4,7 +4,7 @@ APP_NAME="Consolideth API"
 API_PREFIX=api
 APP_FALLBACK_LANGUAGE=en
 APP_HEADER_LANGUAGE=x-custom-lang
-FRONTEND_DOMAIN=http://localhost:3001
+FRONTEND_DOMAIN=http://localhost:80
 BACKEND_DOMAIN=http://localhost:3000
 
 SENTRY_DSN=https://xxxxxxxxxxxxxxxxx.ingest.de.sentry.io/yyyyyyyyyyyyyy
