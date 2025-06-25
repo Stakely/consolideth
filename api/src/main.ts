@@ -82,16 +82,10 @@ async function bootstrap() {
     .setDescription('API docs')
     .setVersion('1.0');
 
-  if (process.env.NODE_ENV === 'production') {
-    optionsBuilder
-      .addServer('https://dev-api.consolideth.app/', 'Development server')
-      .addServer('https://api.consolideth.app/', 'Production server');
-  } else {
-    optionsBuilder
-      .addServer('https://dev-api.consolideth.app/', 'Development server')
-      .addServer('https://api.consolideth.app/', 'Production server')
-      .addServer('http://localhost:3000', 'localhost server');
-  }
+  optionsBuilder
+    .addServer('https://dev-api.consolideth.app/', 'Development server')
+    .addServer('https://api.consolideth.app/', 'Production server')
+    .addServer('http://localhost:3000', 'localhost server');
 
   const options = optionsBuilder
     // .addApiKey({ type: 'apiKey', in: 'header', name: 'X-API-KEY' }, 'X-API-KEY')
