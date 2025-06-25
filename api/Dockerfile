@@ -1,6 +1,6 @@
 FROM node:20.11.1-alpine
 
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash wget
 RUN npm i -g @nestjs/cli typescript ts-node
 
 RUN apk add --update python3 make g++ && rm -rf /var/cache/apk/*
