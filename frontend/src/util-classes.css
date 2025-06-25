@@ -1,0 +1,395 @@
+/* Spacing */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-0 {
+  flex: 0;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-5 {
+  gap: 5px;
+}
+
+.gap-2r {
+  gap: 2rem;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-15 {
+  gap: 15px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-50 {
+  gap: 50px;
+}
+
+.gap-30 {
+  gap: 30px;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.content-center {
+  justify-content: center;
+}
+
+.content-end {
+  justify-content: flex-end;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+/* Height and width */
+.h-100vh {
+  height: 100%;
+  min-height: 100vh;
+}
+
+.max-h-80vh {
+  max-height: 80vh;
+}
+
+.max-h-100vh {
+  max-height: 100vh;
+}
+
+.max-h-70vh {
+  max-height: 70vh;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-35 {
+  width: 35%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-45 {
+  width: 45%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-65 {
+  width: 65%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.max-w-435 {
+  max-width: 435px;
+}
+
+.max-w-950 {
+  max-width: 950px;
+}
+
+.max-w-1300 {
+  max-width: 1300px;
+}
+
+/* Padding and margins*/
+.p-8 {
+  padding: 8px;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
+.p-30 {
+  padding: 30px;
+}
+
+.p-50 {
+  padding: 50px;
+}
+
+.p-y-10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.p-y-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.p-y-15 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.p-y-65 {
+  padding-top: 65px;
+  padding-bottom: 65px;
+}
+
+.p-y-60 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.p-y-85 {
+  padding-top: 85px;
+  padding-bottom: 85px;
+}
+
+.p-x-5 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.p-x-7 {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.p-x-15 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.p-x-30 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.p-x-50 {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.p-x-60 {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.p-b-5 {
+  padding-bottom: 5px;
+}
+
+.p-b-50 {
+  padding-bottom: 50px;
+}
+
+/* Radius */
+.br-5 {
+  border-radius: 5px;
+}
+
+.br-3 {
+  border-radius: 3px;
+}
+
+/* Others */
+.bg-gradient-connect {
+  background:
+    radial-gradient(
+      29.39% 25.74% at 50.81% 0.02%,
+      rgba(27, 51, 130, 0.5) 15.75%,
+      rgba(77, 190, 110, 0.5) 27.74%,
+      rgba(11, 142, 229, 0.25) 63.3%,
+      rgba(21, 57, 148, 0) 100%
+    ),
+    radial-gradient(
+      78.75% 65.95% at 50.81% 0.02%,
+      rgba(27, 51, 130, 0.5) 15.75%,
+      rgba(77, 190, 110, 0.5) 27.74%,
+      rgba(11, 142, 229, 0.25) 63.3%,
+      rgba(21, 57, 148, 0) 100%
+    ),
+    radial-gradient(
+      235.08% 194.58% at 50.81% 0.02%,
+      rgba(27, 51, 130, 0.5) 15.75%,
+      rgba(77, 190, 110, 0.5) 27.74%,
+      rgba(11, 142, 229, 0.25) 63.3%,
+      rgba(21, 57, 148, 0) 100%
+    ),
+    radial-gradient(
+      379.25% 334.89% at 50.81% 0.02%,
+      rgba(27, 51, 130, 0.5) 25.77%,
+      rgba(77, 190, 110, 0.5) 27.74%,
+      rgba(11, 142, 229, 0.25) 63.3%,
+      rgba(21, 57, 148, 0) 100%
+    ),
+    #1b3382;
+}
+
+.bg-gradient-consolidation {
+  background:
+    radial-gradient(
+      29.39% 25.74% at 50.81% 0.02%,
+      rgba(27, 51, 130, 0.2) 15.75%,
+      rgba(77, 190, 110, 0.2) 27.74%,
+      rgba(11, 142, 229, 0.1) 63.3%,
+      rgba(21, 57, 148, 0) 100%
+    ),
+    radial-gradient(
+      78.75% 65.95% at 50.81% 0.02%,
+      rgba(27, 51, 130, 0.2) 15.75%,
+      rgba(77, 190, 110, 0.2) 27.74%,
+      rgba(11, 142, 229, 0.1) 63.3%,
+      rgba(21, 57, 148, 0) 100%
+    ),
+    radial-gradient(
+      235.08% 194.58% at 50.81% 0.02%,
+      rgba(27, 51, 130, 0.2) 15.75%,
+      rgba(77, 190, 110, 0.2) 27.74%,
+      rgba(11, 142, 229, 0.1) 63.3%,
+      rgba(21, 57, 148, 0) 100%
+    ),
+    radial-gradient(
+      379.25% 334.89% at 50.81% 0.02%,
+      rgba(27, 51, 130, 0.2) 25.77%,
+      rgba(77, 190, 110, 0.2) 27.74%,
+      rgba(11, 142, 229, 0.1) 63.3%,
+      rgba(21, 57, 148, 0) 100%
+    ),
+    #1b3382;
+}
+
+.bg-accordion-closed {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.bg-accordion-open {
+  background: rgba(13, 24, 71, 0.5);
+}
+
+.o-hidden {
+  overflow: hidden;
+}
+
+.o-y-auto {
+  overflow-y: auto;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.relative {
+  position: relative;
+}
+
+.z-4 {
+  z-index: 4;
+}
+.z-3 {
+  z-index: 3;
+}
+.z-2 {
+  z-index: 2;
+}
+.z-1 {
+  z-index: 1;
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.b-0 {
+  bottom: 0;
+}
+
+.b-15 {
+  bottom: 15px;
+}
+
+.t-0 {
+  top: 0;
+}
+
+.blur {
+  filter: blur(8px);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.transition-300 {
+  transition: all 300ms ease-in-out;
+}
+
+.bg-translucent {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.border-box {
+  box-sizing: border-box;
+}
+
+.box-shadow {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.scale-on-hover:hover {
+  scale: 1.1;
+}

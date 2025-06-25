@@ -1,0 +1,152 @@
+@import 'util-classes.css';
+
+html,
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 1680px) {
+  html,
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1440px) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1220px) {
+  html,
+  body {
+    font-size: 11px;
+  }
+}
+
+[data-rk] {
+  width: 100%;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('./assets/fonts/plus-jakarta-sans/PlusJakartaSans-VariableFont_wght.ttf');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('./assets/fonts/plus-jakarta-sans/PlusJakartaSans-Italic-VariableFont_wght.ttf');
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url('./assets/fonts/fira-code/FiraCode-VariableFont_wght.ttf');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+[data-rk] {
+  box-sizing: content-box !important;
+}
+
+button[data-testid='rk-connect-button'] {
+  padding: 20px 30px !important;
+  font-size: 16px !important;
+  text-align: center !important;
+  height: 55px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+button[data-testid='rk-connect-button']:hover {
+  background-color: #213d96 !important;
+  scale: 1 !important;
+  transform: scale(1) !important;
+  color: #ff7748;
+}
+
+.logo {
+  display: inline-block;
+}
+
+.logo-part {
+  position: relative;
+  display: inline-block;
+  transition: color 1s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin-hover {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(50deg);
+  }
+  66% {
+    transform: rotate(-50deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.icon-spin-hover {
+  transition: all 0.6s ease-in-out;
+}
+.icon-spin-hover:hover {
+  animation: spin-hover 1s ease-in-out infinite;
+  scale: 1.1;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-track:active {
+  background: rgba(255, 255, 255, 0.3);
+}
