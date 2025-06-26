@@ -154,9 +154,6 @@ The frontend provides a user-friendly interface for:
 APP_PORT=3000
 FRONTEND_PORT=4000
 
-# Network
-NETWORK_NAME=consolideth-network
-```
 
 #### API Environment (`api/.env`)
 ```bash
