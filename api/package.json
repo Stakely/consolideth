@@ -39,9 +39,6 @@
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org stakely --project consolideth-api ./dist"
   },
   "dependencies": {
-    "@mysten/sui": "^1.28.0",
-    "@mysten/walrus": "^0.0.17",
-    "@mysten/walrus-wasm": "^0.0.6",
     "@nestjs/axios": "^3.1.2",
     "@nestjs/common": "^10.4.17",
     "@nestjs/config": "^3.3.0",
