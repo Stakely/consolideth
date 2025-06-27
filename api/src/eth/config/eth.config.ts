@@ -1,18 +1,9 @@
 import { registerAs } from '@nestjs/config';
 import { EthConfig } from './eth-config.type';
 import validateConfig from '../../utils/validate-config';
-import { IsEnum, IsInt, IsOptional, IsString, Min } from 'class-validator';
-
-enum EthNetwork {
-  Mainnet = 'mainnet',
-  Hoodi = 'hoodi',
-}
+import { IsInt, IsOptional, IsString, Min } from 'class-validator';
 
 class EnvironmentVariablesValidator {
-  @IsEnum(EthNetwork)
-  @IsOptional()
-  ETH_NETWORK: EthNetwork;
-
   @IsString()
   ETH_RPC_URL_MAINNET: string;
 
@@ -53,7 +44,6 @@ export default registerAs<EthConfig>('eth', () => {
   }
 
   return {
-    network: process.env.ETH_NETWORK || 'mainnet', // Default to mainnet, but this will be overridden by headers
     rpcUrls: {
       mainnet: process.env.ETH_RPC_URL_MAINNET,
       hoodi: process.env.ETH_RPC_URL_HOODI,

@@ -104,8 +104,6 @@ RATE_LIMIT_PER_SECOND=2
 RATE_LIMIT_PER_MINUTE=100
 ```
 
-**Note:** The `ETH_NETWORK` environment variable is no longer required as the network is now specified per request via the `x-network` header.
-
 ### Configuration
 
 The ETH module provides a structured configuration using NestJS's ConfigModule. The configuration includes:

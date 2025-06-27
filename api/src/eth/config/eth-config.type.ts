@@ -1,5 +1,4 @@
 export type EthConfig = {
-  network: string;
   rpcUrls: {
     mainnet: string;
     hoodi: string;
