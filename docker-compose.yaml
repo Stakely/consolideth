@@ -49,5 +49,5 @@ services:
 # Networks
 networks:
   consolideth-network:
-    name: ${NETWORK_NAME:-consolideth-network}
+    name: consolideth-network
     driver: bridge 

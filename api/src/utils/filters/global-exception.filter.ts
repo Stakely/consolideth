@@ -11,8 +11,6 @@ import {
   Response,
 } from 'express';
 
-import * as Sentry from '@sentry/nestjs';
-
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
   private readonly logger = new Logger(GlobalExceptionFilter.name);
@@ -49,7 +47,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         data,
       },
     };
-    Sentry.captureException(exception);
 
     // Enhanced logging
     this.logger.error(

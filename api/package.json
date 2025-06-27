@@ -35,8 +35,7 @@
     "test:e2e": "env-cmd jest --config ./test/jest-e2e.json",
     "prepare": "husky",
     "release": "release-it",
-    "commitlint": "commitlint --edit",
-    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org stakely --project consolideth-api ./dist"
+    "commitlint": "commitlint --edit"
   },
   "dependencies": {
     "@nestjs/axios": "^3.1.2",
@@ -51,9 +50,6 @@
     "@nestjs/terminus": "^10.2.3",
     "@nestjs/throttler": "^6.4.0",
     "@nestjs/typeorm": "^10.0.2",
-    "@sentry/cli": "^2.45.0",
-    "@sentry/nestjs": "^9.5.0",
-    "@sentry/profiling-node": "^9.1.0",
     "@types/busboy": "^1.5.4",
     "@types/dotenv": "^8.2.0",
     "@types/jest": "29.5.12",

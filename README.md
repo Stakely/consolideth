@@ -175,9 +175,7 @@ BEACONCHAIN_API_KEY=your_beaconchain_api_key
 RATE_LIMIT_PER_SECOND=5
 RATE_LIMIT_PER_MINUTE=20
 
-# Monitoring
-SENTRY_DSN=https://xxxxxxxxxxxxxxxxx.ingest.de.sentry.io/yyyyyyyyyyyyyy
-SENTRY_ENABLED=false
+
 ```
 
 #### Frontend Environment (`frontend/.env`)

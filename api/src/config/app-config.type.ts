@@ -9,6 +9,4 @@ export type AppConfig = {
   logLevel: string;
   fallbackLanguage: string;
   headerLanguage: string;
-  sentryDsn?: string;
-  sentryEnabled?: boolean;
 };

@@ -1,5 +1,3 @@
-// Import this first!
-import './sentry/instrument';
 import 'dotenv/config';
 import {
   ClassSerializerInterceptor,
@@ -19,7 +17,6 @@ import { writeFileSync } from 'fs';
 import helmet from 'helmet';
 // import { SignResponseMiddleware } from './common/middleware/sign-response.middleware';
 
-import * as Sentry from '@sentry/nestjs';
 // import { GlobalExceptionFilter } from './utils/filters/global-exception.filter';
 
 async function bootstrap() {
@@ -57,8 +54,6 @@ async function bootstrap() {
     },
   );
 
-  // Setup Sentry error handler first
-  Sentry.setupConnectErrorHandler(app);
   // throw new Error(`Failed to upload file:`);
 
   app.enableVersioning({

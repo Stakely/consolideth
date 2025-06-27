@@ -1,8 +1,6 @@
 FROM node:20.11.1-alpine
 
-# Add build argument for Sentry auth token
-ARG SENTRY_AUTH_TOKEN
-ENV SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+
 
 RUN apk add --no-cache bash
 RUN npm i -g @nestjs/cli typescript ts-node
@@ -20,7 +18,7 @@ RUN sed -i 's/\r//g' /opt/startup.relational.prod.sh
 
 WORKDIR /usr/src/app
 RUN if [ ! -f .env ]; then touch .env; fi
-# Build with Sentry token available
-RUN SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN} npm run build
+# Build the application
+RUN npm run build
 
 CMD ["/opt/startup.relational.prod.sh"]

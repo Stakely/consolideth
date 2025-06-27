@@ -5,10 +5,6 @@ import ethConfig from './eth/config/eth.config';
 import { ConfigModule } from '@nestjs/config';
 
 import { UtilsService } from './utils/utils.service';
-import {
-  // SentryGlobalFilter,
-  SentryModule,
-} from '@sentry/nestjs/setup';
 
 import { TerminusModule } from '@nestjs/terminus';
 // import { APP_GUARD } from '@nestjs/core';
@@ -37,18 +33,10 @@ import { EthModule } from './eth/eth.module';
     LogsModule,
     TerminusModule,
     // HomeModule,
-    SentryModule.forRoot(),
     ScheduleModule.forRoot(),
     EthModule,
   ],
-  providers: [
-    UtilsService,
-    CustomLogger,
-    // {
-    //   provide: APP_FILTER,
-    //   useClass: SentryGlobalFilter,
-    // },
-  ],
+  providers: [UtilsService, CustomLogger],
   controllers: [HealthController],
 })
 export class AppModule {}

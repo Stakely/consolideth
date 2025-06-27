@@ -2,7 +2,6 @@ import { registerAs } from '@nestjs/config';
 import { AppConfig } from './app-config.type';
 import validateConfig from '.././utils/validate-config';
 import {
-  IsBoolean,
   IsEnum,
   IsInt,
   IsOptional,
@@ -48,14 +47,6 @@ class EnvironmentVariablesValidator {
 
   @IsString()
   LOG_LEVEL: string;
-
-  @IsOptional()
-  @IsString()
-  SENTRY_DSN: string;
-
-  @IsOptional()
-  @IsBoolean()
-  SENTRY_ENABLED: boolean;
 }
 
 export default registerAs<AppConfig>('app', () => {
@@ -76,7 +67,5 @@ export default registerAs<AppConfig>('app', () => {
     fallbackLanguage: process.env.APP_FALLBACK_LANGUAGE || 'en',
     headerLanguage: process.env.APP_HEADER_LANGUAGE || 'x-custom-lang',
     logLevel: process.env.LOG_LEVEL ?? 'debug',
-    sentryDsn: process.env.SENTRY_DSN,
-    sentryEnabled: process.env.SENTRY_ENABLED === 'true',
   };
 });
