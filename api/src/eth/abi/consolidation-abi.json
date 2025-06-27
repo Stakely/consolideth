@@ -1,0 +1,26 @@
+[
+  {
+    "inputs": [
+      {"internalType": "bytes48", "name": "source_pubkey", "type": "bytes48"},
+      {"internalType": "bytes48", "name": "target_pubkey", "type": "bytes48"}
+    ],
+    "name": "add_consolidation_request",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "get_fee",
+    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "get_queue_length",
+    "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

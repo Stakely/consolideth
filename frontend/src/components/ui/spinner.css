@@ -1,0 +1,46 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dot-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+
+.spinner-dot {
+  font-family: 'Plus Jakarta Sans';
+  animation: dot-flash 1.5s infinite;
+  animation-fill-mode: both;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.spinner-dot:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.spinner-dot:nth-child(3) {
+  animation-delay: 1s;
+  color: #fff;
+}
+
+.spinner-dot:nth-child(4) {
+  animation-delay: 1.5s;
+  color: #ff7748;
+}

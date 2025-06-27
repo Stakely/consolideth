@@ -1,0 +1,53 @@
+services:
+  # NestJS API Backend
+  consolideth-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: consolideth-api
+    environment:
+      - NODE_ENV=production
+      - APP_PORT=${APP_PORT:-3000}
+    ports:
+      - "${APP_PORT:-3000}:${APP_PORT:-3000}"
+    networks:
+      - consolideth-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget --no-verbose --tries=1 --spider http://localhost:${APP_PORT:-3000}/api/v1/health || exit 1"]
+      timeout: 10s
+      retries: 10
+      interval: 15s
+      start_period: 10s
+    volumes:
+      - ./api/.env:/usr/src/app/.env:ro
+    command: ["npm", "run", "start:prod"]
+
+  # React Frontend
+  consolideth-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:${APP_PORT:-3000}
+    container_name: consolideth-frontend
+    ports:
+      - "${FRONTEND_PORT:-4000}:80"
+    depends_on:
+      consolideth-api:
+        condition: service_healthy
+    networks:
+      - consolideth-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "sh", "-c", "wget --no-verbose --tries=1 --spider http://localhost:80 || exit 1"]
+      timeout: 10s
+      retries: 5
+      interval: 15s
+      start_period: 15s
+
+# Networks
+networks:
+  consolideth-network:
+    name: consolideth-network
+    driver: bridge 
