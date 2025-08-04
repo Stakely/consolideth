@@ -30,7 +30,9 @@ export class NetworkConfigService {
       );
     }
 
-    const config = this.configService.get('eth', { infer: true }) as EthConfig;
+    const config = this.configService.get<EthConfig>('eth', {
+      infer: true,
+    });
 
     // Get beacon chain API URLs
     let beaconChainApiUrl: string;

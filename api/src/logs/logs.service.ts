@@ -8,7 +8,7 @@ export class LogsService {
   private readonly infoLogLevelValid = ['debug', 'info'];
   private readonly errorLogLevelValid = ['debug', 'info', 'error'];
   constructor(private readonly configService: ConfigService) {
-    this.logLevel = this.configService.getOrThrow('app.logLevel', {
+    this.logLevel = this.configService.getOrThrow<string>('app.logLevel', {
       infer: true,
     });
     if (!this.logLevel) this.logLevel = 'debug';
