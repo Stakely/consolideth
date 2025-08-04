@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { BeaconChainService } from './beacon-chain.service';
 import { NetworkConfigService } from './network-config.service';
+import { EthConfig } from '../config/eth-config.type';
 
 @Injectable()
 export class Web3Service {
@@ -18,9 +19,18 @@ export class Web3Service {
     private beaconChainService: BeaconChainService,
     private networkConfigService: NetworkConfigService,
   ) {
-    this.rpcUrls = this.configService.get('eth.rpcUrls', {
-      infer: true,
-    }) as { [key: string]: string };
+    const rpcUrls = this.configService.get<EthConfig['rpcUrls']>(
+      'eth.rpcUrls',
+      {
+        infer: true,
+      },
+    );
+
+    if (!rpcUrls) {
+      throw new Error('RPC URLs configuration is missing');
+    }
+
+    this.rpcUrls = rpcUrls;
 
     // Initialize Web3 instances for each network
     this.initializeWeb3Instances();
