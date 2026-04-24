@@ -96,7 +96,7 @@
     "tslib": "2.6.2",
     "typeorm": "^0.3.27",
     "typescript": "5.3.3",
-    "uuid": "^11.1.0",
+    "uuid": "^14.0.0",
     "web3": "^4.5.0",
     "yamljs": "^0.3.0"
   },
@@ -185,8 +185,8 @@
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@nestjs/cli": "11.0.16",
-    "@nestjs/schematics": "10.1.1",
+    "@nestjs/cli": "11.0.21",
+    "@nestjs/schematics": "11.1.0",
     "@nestjs/testing": "11.1.5",
     "@release-it/conventional-changelog": "^10.0.4",
     "@swc/cli": "^0.8.1",
