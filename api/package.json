@@ -46,15 +46,15 @@
     "@nestjs/passport": "^11.0.0",
     "@nestjs/platform-express": "11.1.28",
     "@nestjs/schedule": "^6.0.0",
-    "@nestjs/swagger": "11.4.6",
+    "@nestjs/swagger": "^11.4.7",
     "@nestjs/terminus": "^11.0.0",
     "@nestjs/throttler": "^6.4.0",
     "@nestjs/typeorm": "^11.0.0",
     "@types/busboy": "^1.5.4",
     "@types/dotenv": "^8.2.0",
     "@types/jest": "29.5.12",
-    "axios": "^1.16.0",
-    "bcrypt": "^5.1.1",
+    "axios": "^1.18.1",
+    "bcrypt": "^6.0.0",
     "busboy": "^1.6.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
@@ -222,5 +222,16 @@
     "tsconfig-paths": "4.2.0",
     "tslib": "2.6.2",
     "typescript": "5.3.3"
+  },
+  "overrides": {
+    "brace-expansion@1": "^1.1.18",
+    "brace-expansion@2": "^2.1.4",
+    "brace-expansion@5": "^5.0.9",
+    "fast-uri@3": "^3.1.6",
+    "ip-address@10": "10.5.0",
+    "js-yaml@3": "^3.15.2",
+    "js-yaml@4": "^4.3.2",
+    "js-yaml@5": "^5.4.1",
+    "undici@7": "^7.29.0"
   }
 }
