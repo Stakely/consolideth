@@ -1,0 +1,27 @@
+packages:
+  - '.'
+
+# Three days of quarantine: a freshly published version is not installed until
+# it has been on the registry long enough for a compromised release to be
+# noticed and pulled. Do not lower this.
+minimumReleaseAge: 4320
+minimumReleaseAgeIgnoreMissingTime: false
+resolutionMode: highest
+
+# pnpm needs an explicit decision per package with a postinstall script; a
+# blocked postinstall is the safe default, and nothing here needs one.
+allowBuilds:
+  # Scarf's postinstall only sends install analytics (it comes with
+  # swagger-ui-dist); the package works without it.
+  '@scarf/scarf': false
+  # SWC's native binary comes from its platform-specific optional dependency
+  # (e.g. @swc/core-linux-x64-musl), so its postinstall check is not needed.
+  '@swc/core': false
+
+# Close published advisories in transitive dependencies (pnpm audit, 16 Oct
+# 2026). Each is pinned to an exact patched release at least two weeks old.
+# js-yaml 5 comes with @nestjs/swagger; undici and basic-ftp with release-it.
+overrides:
+  js-yaml@>=5.0.0 <5.4.1: 5.4.2
+  undici@>=7.0.0 <7.29.0: 7.29.1
+  basic-ftp@<6.2.1: 6.2.1

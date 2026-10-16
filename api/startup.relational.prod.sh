@@ -2,10 +2,10 @@
 set -e
 
 # echo "Running migrations..."
-# npm run migration:run || exit 1
+# pnpm run migration:run || exit 1
 
 # echo "Running seeds..."
-# npm run seed:run:relational || exit 1
+# pnpm run seed:run:relational || exit 1
 
 echo "Starting application..."
-exec npm run start:prod
+exec pnpm run start:prod

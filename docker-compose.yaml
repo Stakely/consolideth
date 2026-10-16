@@ -21,7 +21,7 @@ services:
       start_period: 10s
     volumes:
       - ./api/.env:/usr/src/app/.env:ro
-    command: ["npm", "run", "start:prod"]
+    command: ["pnpm", "run", "start:prod"]
 
   # React Frontend
   consolideth-frontend:

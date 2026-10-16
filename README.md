@@ -15,7 +15,7 @@ This is a monorepo containing:
 
 - Docker and Docker Compose
 - Node.js 20+ (for local development)
-- Yarn (for frontend development)
+- pnpm 11 (`corepack enable`; each subproject pins its version in `packageManager`)
 
 ### Running with Docker Compose
 
@@ -69,16 +69,16 @@ This is a monorepo containing:
 
 ```bash
 cd api
-npm install
-npm run start:dev
+pnpm install
+pnpm start:dev
 ```
 
 #### Frontend Development
 
 ```bash
 cd frontend
-yarn install
-yarn dev
+pnpm install
+pnpm dev
 ```
 
 ## 📖 API Documentation
@@ -138,11 +138,11 @@ The frontend provides a user-friendly interface for:
 
 ### Frontend Scripts
 
-- `yarn dev` - Start development server with HMR
-- `yarn build` - Build for production
-- `yarn preview` - Preview production build
-- `yarn cs:check` - Check coding style (Prettier + ESLint)
-- `yarn cs:fix` - Auto-fix coding style issues
+- `pnpm dev` - Start development server with HMR
+- `pnpm build` - Build for production
+- `pnpm preview` - Preview production build
+- `pnpm cs:check` - Check coding style (Prettier + ESLint)
+- `pnpm cs:fix` - Auto-fix coding style issues
 
 ## ⚙️ Configuration
 
