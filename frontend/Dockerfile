@@ -1,18 +1,20 @@
-FROM node:20.19.0-slim AS build
-
-RUN apt-get update && \
-    apt-get install -y python3 make g++ && \
-    ln -s /usr/bin/python3 /usr/bin/python && \
-    apt-get clean
+FROM node:24-slim AS build
 
 WORKDIR /app
-COPY package.json .
-COPY yarn.lock .
 
-RUN yarn install
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+ENV CI=true
+RUN corepack enable \
+  && corepack prepare pnpm@11.1.2 --activate
+
+# pnpm-workspace.yaml carries the quarantine window and the allowBuilds
+# verdicts, so it has to be there before the install.
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
+
 COPY . .
 
-RUN yarn build
+RUN pnpm build
 
 FROM nginx:alpine AS server
 

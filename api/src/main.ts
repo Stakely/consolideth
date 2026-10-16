@@ -12,7 +12,7 @@ import { AppModule } from './app.module';
 import validationOptions from './utils/validation-options';
 import { AllConfigType } from './config/config.type';
 import { ResolvePromisesInterceptor } from './utils/serializer.interceptor';
-import * as YAML from 'yamljs';
+import { dump as toYaml } from 'js-yaml';
 import { writeFileSync } from 'fs';
 import helmet from 'helmet';
 // import { SignResponseMiddleware } from './common/middleware/sign-response.middleware';
@@ -96,7 +96,7 @@ async function bootstrap() {
   // writeFileSync(jsonFilePath, jsonDocument, 'utf8');
 
   // Convert document to YAML
-  const yamlDocument = YAML.stringify(document, 10);
+  const yamlDocument = toYaml(document, { noRefs: true });
 
   // Persist YAML documentation to file
   const yamlFilePath = './swagger.yaml'; // You can choose your path

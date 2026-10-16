@@ -5,13 +5,13 @@
 Install all dependencies:
 
 ```shell
-yarn install
+pnpm install
 ```
 
 Run the project in dev mode with HMR.
 
 ```shell
-yarn dev
+pnpm dev
 ```
 
 ## Docker image
@@ -32,14 +32,14 @@ Builds the project generating the chunks and static files; Also it will run a
 development server to serve the static files. In this mode it takes the variables declared in `.env`.
 
 ```shell
-yarn preview
+pnpm preview
 ```
 
 It builds the project generating chunks and static files without running a development server.
 In this mode it takes variables declared in `.env`.
 
 ```shell
-yarn build
+pnpm build
 ```
 
 ### Coding Style
@@ -47,11 +47,11 @@ yarn build
 Run prettier and eslint to check for errors in the coding style.
 
 ```shell
-yarn cs:check
+pnpm cs:check
 ```
 
 Run prettier and eslint in a mode that will try to automatically fix errors.
 
 ```shell
-yarn cs:fix
+pnpm cs:fix
 ```
